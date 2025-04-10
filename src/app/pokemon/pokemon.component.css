@@ -1,0 +1,22 @@
+.pokemon-card {
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    max-width: fit-content;
+    border-radius: 2rem;
+    border: solid black 1px;
+    padding-right: 1rem;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  .genImagen {
+    height: 24px;
+    object-fit: contain;  /* Esto asegura que la imagen se ajuste sin distorsionarse */
+  }
+  
+  
+    
