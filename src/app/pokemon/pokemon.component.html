@@ -1,15 +1,15 @@
 <div class="pokemon-card">
-    <div *ngIf="sprite">
+    <div class="basic" *ngIf="sprite">
         <img [src]="sprite" alt="pokemon-sprite">
+        <span class="nombre">{{name | titlecase}}</span>
       </div>
     <div class="datos">
         <ul>
-            <li class="nombre">{{name | titlecase}}</li>
-            <li class="gen"><img [src]="genImg" alt="Gen {{genImg}}" class="genImagen"></li>
-            <li class="tipo1"><img [src]="tipo1img" alt="{{tipo1}}"></li>
-            <li class="tipo1"><img [src]="tipo2img" alt="{{tipo2}}"></li>
-            <li class="peso">{{peso}}kg</li>
-            <li class="altura">{{altura}}m</li>
+            <li class="gen"><cuadro [imagen]="genImg" [alter]=" 'Gen {{genImg}}' "></cuadro></li>
+            <li class="tipo1"><cuadro [imagen]="tipo1img" [alter]="tipo1"></cuadro></li>
+            <li class="tipo1"><cuadro [imagen]="tipo2img" [alter]="tipo2"></cuadro></li>
+            <li class="peso"><cuadro [alter]="peso + 'kg' "></cuadro></li>
+            <li class="altura"><cuadro [alter]="altura + 'm'"></cuadro></li>
         </ul>
     </div>
 </div>

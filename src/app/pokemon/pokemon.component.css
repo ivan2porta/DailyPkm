@@ -7,10 +7,20 @@
     border-radius: 2rem;
     border: solid black 1px;
     padding-right: 1rem;
+    width: 100rem;
   }
   
+.basic{
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   ul {
     list-style: none;
+    display: flex;
+    gap: 1rem;
   }
   
   .genImagen {
