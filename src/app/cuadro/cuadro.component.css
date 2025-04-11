@@ -36,3 +36,11 @@ position: absolute;
 .indicador > img{
     width: 100%;
 }
+
+.bgCorrecto{
+  background-color: rgb(172, 239, 160);
+}
+
+.bgError{
+  background-color: rgb(246, 169, 169);
+}
