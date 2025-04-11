@@ -5,11 +5,11 @@
       </div>
     <div class="datos">
         <ul>
-            <li class="gen"><cuadro [imagen]="genImg" [alter]=" 'Gen {{genImg}}' "></cuadro></li>
+            <li class="gen"><cuadro [resp]="respuestasNumericas[0]" [imagen]="genImg" [alter]=" 'Gen {{genImg}}' "></cuadro></li>
             <li class="tipo1"><cuadro [imagen]="tipo1img" [alter]="tipo1"></cuadro></li>
             <li class="tipo1"><cuadro [imagen]="tipo2img" [alter]="tipo2"></cuadro></li>
-            <li class="peso"><cuadro [alter]="peso + 'kg' "></cuadro></li>
-            <li class="altura"><cuadro [alter]="altura + 'm'"></cuadro></li>
+            <li class="peso"><cuadro [resp]="respuestasNumericas[1]" [alter]="peso + 'kg' "></cuadro></li>
+            <li class="altura"><cuadro [resp]="respuestasNumericas[2]" [alter]="altura + 'm'"></cuadro></li>
         </ul>
     </div>
 </div>

@@ -25,7 +25,7 @@
   
   .genImagen {
     height: 24px;
-    object-fit: contain;  /* Esto asegura que la imagen se ajuste sin distorsionarse */
+    object-fit: contain;  
   }
   
   

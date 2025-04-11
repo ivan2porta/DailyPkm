@@ -6,9 +6,13 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   styleUrls: ['./pokemon.component.css']
 })
 export class PokemonComponent {
-  @Input() pokemonId: number = 1;
+  @Input() pokemonId: number = 0;
+  @Input() respData = {};
+  @Input() respPeso: number = 0;
+  @Input() respGen: number = 0;
+  @Input() respAltura: number = 0;
 
-  pokemon:any = {};
+  pokemon: any = {};
   sprite: string = "";
   name: string = "";
   gen: number = 0;
@@ -21,19 +25,20 @@ export class PokemonComponent {
   tipo2img: string = "";
   peso: number = 0;
   altura: number = 0;
-
-  constructor() {
-    console.log("tipo" + this.tipo2);
-    this.loadInfo(151); 
-  }
+  respuestasNumericas = [""];
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['pokemonId']) {
+    // Verifica si el pokemonId cambió y si no es 0
+    if (changes['pokemonId'] && this.pokemonId !== 0) {
       this.loadInfo(this.pokemonId);
     }
   }
 
   async loadInfo(num: number) {
+    if (num === 0) {
+      return; // Evita hacer la llamada a la API si el pokemonId es 0
+    }
+    
     try {
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`);
       const data = await res.json();
@@ -44,33 +49,57 @@ export class PokemonComponent {
       this.tiposTraducidos = extraerTipos(this.tipos);
       this.tipo1 = this.tiposTraducidos[0];
       this.tipo1img = `assets/img/tipos/${this.tipo1}.png`;
-      (this.tiposTraducidos.length > 1) ? this.tipo2 = this.tiposTraducidos[1] : this.tipo2 = "Sin tipo";
-      (this.tiposTraducidos.length > 1) ? this.tipo2img = `assets/img/tipos/${this.tipo2}.png` : this.tipo2img = `assets/img/tipos/sinTipo.png`;
+      this.tipo2 = this.tiposTraducidos.length > 1 ? this.tiposTraducidos[1] : "Sin tipo";
+      this.tipo2img = this.tiposTraducidos.length > 1 ? `assets/img/tipos/${this.tipo2}.png` : `assets/img/tipos/sinTipo.png`;
       this.peso = data.weight / 10;
       this.altura = data.height / 10;
       this.gen = obtenerGeneracion(data.id);
       this.genImg = `assets/img/generaciones/${this.gen}.png`;
-
-      
+      this.respuestasNumericas[0] = comparar(this.gen, this.respGen);
+      this.respuestasNumericas[1] = comparar(this.peso, this.respPeso);
+      this.respuestasNumericas[2] = comparar(this.altura, this.respAltura);
+      console.log(this.respuestasNumericas);
+      console.log(this.gen);
+      console.log(this.respGen);
+      console.log(this.peso);
+      console.log(this.respPeso);
+      console.log(this.altura);
+      console.log(this.respAltura);
 
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
     }
   }
- 
+
+  constructor() {
+    // No es necesario llamar a loadInfo aquí, ya que lo hacemos en ngOnChanges
+  }
 }
 
+// Función para comparar los valores
+function comparar(intento: number, respuesta: number): string {
+  if (intento > respuesta) {
+    return 'Mayor';
+  } else if (intento < respuesta) {
+    return 'Menor';
+  } else {
+    return 'Igual';
+  }
+}
+
+// Función para extraer y traducir los tipos de Pokémon
 function extraerTipos(arrayTipos: Array<any>) {
   let tiposExtraidos: string[] = [];
   arrayTipos.forEach((tipo) => {
     if (tipo && tipo.type && tipo.type.name) {
-      let tipoTraducido = traducirTipo(tipo.type.name); 
-      tiposExtraidos.push(tipoTraducido); 
+      let tipoTraducido = traducirTipo(tipo.type.name);
+      tiposExtraidos.push(tipoTraducido);
     }
   });
   return tiposExtraidos;
 }
 
+// Función para obtener la generación de un Pokémon
 function obtenerGeneracion(numeroPokédex: number): number {
   switch (true) {
     case (numeroPokédex >= 1 && numeroPokédex <= 151):
@@ -96,7 +125,7 @@ function obtenerGeneracion(numeroPokédex: number): number {
   }
 }
 
-
+// Función para traducir los tipos de Pokémon
 function traducirTipo(tipo: string) {
   switch (tipo.toLowerCase()) {
     case "grass":

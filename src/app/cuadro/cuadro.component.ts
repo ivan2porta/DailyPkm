@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class CuadroComponent {
   @Input() imagen: string = "";
   @Input() alter: string = "";
+  @Input() indicador: boolean = false;
+  @Input() resp: string = "";
 }
