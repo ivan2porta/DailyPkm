@@ -29,7 +29,7 @@ export class PokemonComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     // Verifica si el pokemonId cambió y si no es 0
-    if (changes['pokemonId'] && this.pokemonId !== 0) {
+    if (changes['respAltura'] && this.respAltura !== 0) {
       this.loadInfo(this.pokemonId);
     }
   }
