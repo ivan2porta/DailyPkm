@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { RespData } from './models/resp-data.interface';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dailypkm';
-  respData = {
-    respuesta: Math.floor(Math.random() * (1025 - 1 + 1)) + 1,
+  respData: RespData = {
+    respuesta: getDailyRandomNumber(1, 1025),
     pokemon:  {},
     respuestaNombre: "",
     respuestaGen: 0,
@@ -21,8 +22,15 @@ export class AppComponent {
   }
 
   constructor() {
-    this.loadInfo(this.respData.respuesta);
-    
+    this.init();
+  }
+
+  // Métodos asíncronos en el constructor
+  async init() {
+    await this.loadInfo(this.respData.respuesta);
+    console.log(this.respData.respuesta + "Este");
+    console.log(this.respData.respuestaTipos);
+    console.log(this.respData.respuestaTipo1);
   }
 
   async loadInfo(num: number) {
@@ -126,5 +134,30 @@ function traducirTipo(tipo: string) {
       return "Desconocido"; 
   }
 }
+
+function getDailyRandomNumber(min: number, max: number): number {
+  const today = new Date().toISOString().split('T')[0]; // Ej: "2025-04-11"
+
+  // Convertir la fecha a un número hash para usar como semilla
+  let seed = 0;
+  for (let i = 0; i < today.length; i++) {
+    seed = seed * 31 + today.charCodeAt(i);
+  }
+
+  // Generador pseudoaleatorio simple (Linear Congruential Generator)
+  function seededRandom(seed: number) {
+    const a = 1664525;
+    const c = 1013904223;
+    const m = 2 ** 32;
+    seed = (a * seed + c) % m;
+    return seed / m;
+  }
+
+  const random = seededRandom(seed);
+  return Math.floor(random * (max - min + 1)) + min;
+}
+
+
+
 
 

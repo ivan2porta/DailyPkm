@@ -7,7 +7,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class PokemonComponent {
   @Input() pokemonId: number = 0;
-  @Input() respData = {};
+  @Input() respData: any = {};
   @Input() respPeso: number = 0;
   @Input() respGen: number = 0;
   @Input() respAltura: number = 0;
@@ -31,6 +31,8 @@ export class PokemonComponent {
     // Verifica si el pokemonId cambió y si no es 0
     if (changes['respAltura'] && this.respAltura !== 0) {
       this.loadInfo(this.pokemonId);
+      console.log(this.respData.respuestaTipo2);
+
     }
   }
 
@@ -58,13 +60,7 @@ export class PokemonComponent {
       this.respuestasNumericas[0] = comparar(this.gen, this.respGen);
       this.respuestasNumericas[1] = comparar(this.peso, this.respPeso);
       this.respuestasNumericas[2] = comparar(this.altura, this.respAltura);
-      console.log(this.respuestasNumericas);
-      console.log(this.gen);
-      console.log(this.respGen);
-      console.log(this.peso);
-      console.log(this.respPeso);
-      console.log(this.altura);
-      console.log(this.respAltura);
+
 
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
