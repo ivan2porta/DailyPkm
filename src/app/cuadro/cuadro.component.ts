@@ -11,12 +11,15 @@ export class CuadroComponent implements OnChanges {
   @Input() indicador: boolean = false;
   @Input() resp: string = "";
 
+  color: boolean =false;
   flecha: string = "";
 
   // Método que se llama cuando cambian los inputs
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['resp'] && this.resp) {
       this.setFlecha();
+      this.determinarColor();
+      console.log(this.resp);
     }
   }
 
@@ -31,10 +34,10 @@ export class CuadroComponent implements OnChanges {
     }
   }
 
-  // Puedes usar ngOnInit para inicializar otras cosas si es necesario
-  ngOnInit(): void {
-    // Aquí podrías inicializar otro tipo de lógica si es necesario
-    this.setFlecha();
+  determinarColor(){
+    this.resp === "Igual" ? this.color = true : false;
   }
 }
+
+
 

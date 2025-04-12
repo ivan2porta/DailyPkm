@@ -28,6 +28,7 @@ export class AppComponent {
   // Métodos asíncronos en el constructor
   async init() {
     await this.loadInfo(this.respData.respuesta);
+    console.log(this.respData);
   }
 
   async loadInfo(num: number) {
@@ -44,7 +45,7 @@ export class AppComponent {
       this.respData.respuestaAltura = data.height / 10;
       this.respData.respuestaGen = obtenerGeneracion(data.id);
 
-      console.log(this.respData);
+
 
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
@@ -132,26 +133,20 @@ function traducirTipo(tipo: string) {
   }
 }
 
-function getDailyRandomNumber(min: number, max: number): number {
-  const today = new Date().toISOString().split('T')[0]; // Ej: "2025-04-11"
+function getDailyRandomNumber(min: number = 1, max: number = 1025): number {
+  const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
 
-  // Convertir la fecha a un número hash para usar como semilla
-  let seed = 0;
+  // DJB2 hash para la fecha
+  let hash = 5381;
   for (let i = 0; i < today.length; i++) {
-    seed = seed * 31 + today.charCodeAt(i);
+    hash = ((hash << 5) + hash) + today.charCodeAt(i); // hash * 33 + char
   }
 
-  // Generador pseudoaleatorio simple (Linear Congruential Generator)
-  function seededRandom(seed: number) {
-    const a = 1664525;
-    const c = 1013904223;
-    const m = 2 ** 32;
-    seed = (a * seed + c) % m;
-    return seed / m;
-  }
+  // Asegura un número positivo
+  const positiveHash = Math.abs(hash);
 
-  const random = seededRandom(seed);
-  return Math.floor(random * (max - min + 1)) + min;
+  // Escalarlo al rango deseado
+  return (positiveHash % (max - min + 1)) + min;
 }
 
 

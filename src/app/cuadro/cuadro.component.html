@@ -1,5 +1,5 @@
-<div class="cuadro" [ngClass]="resp === 'Igual' ? 'bgCorrecto' : 'bgError'">
-    <div *ngIf="resp !== '' && resp !== 'Igual'" class="indicador"> 
+<div class="cuadro" [ngClass]="color === true ? 'bgCorrecto' : 'bgError'">
+    <div *ngIf="resp !== '' && resp !== 'Igual' && resp !== 'Diferente'" class="indicador"> 
         <img src="../../assets/img/flechas/{{flecha}}.png" alt="">
     </div>
     <img src="{{imagen}}" alt="{{alter}}">

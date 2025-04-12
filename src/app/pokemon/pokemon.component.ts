@@ -52,7 +52,7 @@ export class PokemonComponent implements OnChanges{
       this.respuestasNumericas[2] = compararTipos(this.tipo2, this.respData.respuestaTipo2);
       this.respuestasNumericas[3] = comparar(this.peso, this.respData.respuestaPeso);
       this.respuestasNumericas[4] = comparar(this.altura, this.respData.respuestaAltura);
-      console.log(this.respuestasNumericas);
+
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
     }
