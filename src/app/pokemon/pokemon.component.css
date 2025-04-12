@@ -1,4 +1,5 @@
 .pokemon-card {
+    margin: 0.5rem;
     background-color: aliceblue;
     display: flex;
     align-items: center;

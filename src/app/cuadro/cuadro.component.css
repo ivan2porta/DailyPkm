@@ -9,7 +9,8 @@
   justify-content: center;
   text-align: center;
   line-height: 2rem;
-  position: relative; /* Asegura que los elementos posicionados sean relativos al contenedor */
+  position: relative; 
+  border: solid 0.2rem rgb(105, 105, 255);
 }
 
 .cuadro > img {
