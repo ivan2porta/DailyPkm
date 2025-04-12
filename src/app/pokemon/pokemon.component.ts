@@ -5,12 +5,9 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.css']
 })
-export class PokemonComponent {
+export class PokemonComponent implements OnChanges{
   @Input() pokemonId: number = 0;
   @Input() respData: any = {};
-  @Input() respPeso: number = 0;
-  @Input() respGen: number = 0;
-  @Input() respAltura: number = 0;
 
   pokemon: any = {};
   sprite: string = "";
@@ -27,14 +24,7 @@ export class PokemonComponent {
   altura: number = 0;
   respuestasNumericas = [""];
 
-  ngOnChanges(changes: SimpleChanges) {
-    // Verifica si el pokemonId cambió y si no es 0
-    if (changes['respAltura'] && this.respAltura !== 0) {
-      this.loadInfo(this.pokemonId);
-      console.log(this.respData.respuestaTipo2);
 
-    }
-  }
 
   async loadInfo(num: number) {
     if (num === 0) {
@@ -57,11 +47,12 @@ export class PokemonComponent {
       this.altura = data.height / 10;
       this.gen = obtenerGeneracion(data.id);
       this.genImg = `assets/img/generaciones/${this.gen}.png`;
-      this.respuestasNumericas[0] = comparar(this.gen, this.respGen);
-      this.respuestasNumericas[1] = comparar(this.peso, this.respPeso);
-      this.respuestasNumericas[2] = comparar(this.altura, this.respAltura);
-
-
+      this.respuestasNumericas[0] = comparar(this.gen, this.respData.respuestaGen);
+      this.respuestasNumericas[1] = compararTipos(this.tipo1, this.respData.respuestaTipo1);
+      this.respuestasNumericas[2] = compararTipos(this.tipo2, this.respData.respuestaTipo2);
+      this.respuestasNumericas[3] = comparar(this.peso, this.respData.respuestaPeso);
+      this.respuestasNumericas[4] = comparar(this.altura, this.respData.respuestaAltura);
+      console.log(this.respuestasNumericas);
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
     }
@@ -69,6 +60,12 @@ export class PokemonComponent {
 
   constructor() {
     // No es necesario llamar a loadInfo aquí, ya que lo hacemos en ngOnChanges
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['pokemonId'] && this.pokemonId !== 0) {
+      this.loadInfo(this.pokemonId);
+    }
   }
 }
 
@@ -81,6 +78,10 @@ function comparar(intento: number, respuesta: number): string {
   } else {
     return 'Igual';
   }
+}
+
+function compararTipos(intento: string, respuesta: string): string {
+  return (intento == respuesta)? "Igual" : "Diferente";
 }
 
 // Función para extraer y traducir los tipos de Pokémon

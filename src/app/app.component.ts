@@ -28,9 +28,6 @@ export class AppComponent {
   // Métodos asíncronos en el constructor
   async init() {
     await this.loadInfo(this.respData.respuesta);
-    console.log(this.respData.respuesta + "Este");
-    console.log(this.respData.respuestaTipos);
-    console.log(this.respData.respuestaTipo1);
   }
 
   async loadInfo(num: number) {
@@ -47,7 +44,7 @@ export class AppComponent {
       this.respData.respuestaAltura = data.height / 10;
       this.respData.respuestaGen = obtenerGeneracion(data.id);
 
-      
+      console.log(this.respData);
 
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
