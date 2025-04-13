@@ -1,0 +1,15 @@
+.sugerencia{
+    display: flex;
+    max-width: 20rem;
+    align-items: center;
+    justify-content: start;
+}
+
+.sugerencia:hover{
+    background-color: #8DA9C4;
+  }
+
+img{
+    height: 4rem;
+}
+

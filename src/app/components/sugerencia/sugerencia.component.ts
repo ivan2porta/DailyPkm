@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sugerencia',
+  selector: 'sugerencia',
   templateUrl: './sugerencia.component.html',
   styleUrls: ['./sugerencia.component.css']
 })

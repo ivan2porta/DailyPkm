@@ -6,6 +6,7 @@
   border-radius: 1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: large;
+  position: relative;
 }
 
 .search__input{
@@ -29,4 +30,28 @@
   fill: #EEF4ED;
   border-radius: .5rem;
   transform: 0.3s;
+}
+
+.sugerencias-container{
+  position: absolute;
+  border: solid 10px black;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background-color: #EEF4ED;
+  border: 1px solid #ccc;
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  max-height: 15rem;
+  overflow-y: auto;
+  width: 15rem;
+  max-width: 20rem;
+  border-radius: 1rem;
+}
+
+li :hover{
+  background-color: #8DA9C4;
 }
