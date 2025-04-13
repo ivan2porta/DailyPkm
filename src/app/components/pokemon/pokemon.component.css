@@ -1,11 +1,10 @@
 .pokemon-card {
     background-color: #8DA9C4;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border-radius: 2rem;
     width: 100%;
-    overflow: hidden;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -22,12 +21,16 @@
   ul {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    justify-content: space-around;
+    gap: 0.5rem;
   }
   
   .genImagen {
     object-fit: contain;  
   }
   
+  .datos{
+    width: 100%;
+  }
   
     
