@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonComponent } from './pokemon/pokemon.component';
-import { CuadroComponent } from './cuadro/cuadro.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
+import { CuadroComponent } from './components/cuadro/cuadro.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonComponent,
-    CuadroComponent
+    CuadroComponent,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,

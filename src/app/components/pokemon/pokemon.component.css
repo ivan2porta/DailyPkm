@@ -1,14 +1,15 @@
 .pokemon-card {
-    margin: 0.5rem;
-    background-color: aliceblue;
+    background-color: #cae9ff;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    padding: 1px;
-    max-width: fit-content;
     border-radius: 2rem;
-    border: solid black 1px;
-    padding-right: 1rem;
-    width: 100rem;
+    width: 100%;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-weight: bold;
   }
   
 .basic{
@@ -25,7 +26,6 @@
   }
   
   .genImagen {
-    height: 24px;
     object-fit: contain;  
   }
   

@@ -19,7 +19,6 @@ export class CuadroComponent implements OnChanges {
     if (changes['resp'] && this.resp) {
       this.setFlecha();
       this.determinarColor();
-      console.log(this.resp);
     }
   }
 

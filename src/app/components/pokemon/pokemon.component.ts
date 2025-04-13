@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { extraerTipos, obtenerGeneracion } from '../utils/helpers';
+import { extraerTipos, obtenerGeneracion } from '../../utils/helpers';
 
 @Component({
   selector: 'pk',
