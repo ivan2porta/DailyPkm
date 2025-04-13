@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { RespData } from './models/resp-data.interface';
-import { getDailyRandomNumber, obtenerGeneracion, extraerTipos } from './utils/helpers';
+import { getRoll, obtenerGeneracion, extraerTipos } from './utils/helpers';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { getDailyRandomNumber, obtenerGeneracion, extraerTipos } from './utils/h
 export class AppComponent {
   title = 'dailypkm';
   respData: RespData = {
-    respuesta: getDailyRandomNumber(1, 1025),
+    respuesta: getRoll(1, 1025),
     pokemon:  {},
     respuestaNombre: "",
     respuestaGen: 0,

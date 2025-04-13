@@ -80,15 +80,42 @@ export function traducirTipo(tipo: string) {
   export function getDailyRandomNumber(min: number = 1, max: number = 1025): number {
     const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
   
-    // DJB2 hash para la fecha
-    let hash = 5381;
+    // Convertir la fecha a un número hash (como semilla)
+    let seed = 0;
     for (let i = 0; i < today.length; i++) {
-      hash = ((hash << 5) + hash) + today.charCodeAt(i); // hash * 33 + char
+      seed = (seed * 31 + today.charCodeAt(i)) >>> 0; // fuerza a unsigned 32-bit
     }
   
-    // Asegura un número positivo
-    const positiveHash = Math.abs(hash);
+    // Pseudo-random generator (LCG)
+    function seededRandom(seed: number): number {
+      const a = 1664525;
+      const c = 1013904223;
+      const m = 2 ** 32;
+      seed = (a * seed + c) % m;
+      return seed / m;
+    }
   
-    // Escalarlo al rango deseado
-    return (positiveHash % (max - min + 1)) + min;
+    const random = seededRandom(seed);
+    return Math.floor(random * (max - min + 1)) + min;
+  }
+  
+  function normalize(val: number, min: number, max: number): number {
+    return (val - 0) / (100 - 0) * (max - min) + min;
+  }
+  
+  export function getRoll(min: number, max: number): number {
+    const date = new Date();
+  
+    const dateParts = [
+      date.getUTCFullYear(),
+      date.getUTCMonth() + 1, 
+      date.getUTCDate()
+    ];
+  
+    const dateString = dateParts.map(n => n.toString().padStart(2, '0')).join('');
+    const dateAsNumber = +dateString;
+    const uniqueNumberString = Math.pow(dateAsNumber, 2).toString();
+    const rollOutOf100 = parseInt(uniqueNumberString.slice(-2), 10);
+
+    return Math.round(normalize(rollOutOf100, min, max));
   }
