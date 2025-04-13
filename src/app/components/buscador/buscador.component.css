@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   height: 4rem;
-  background-color: rgb(138, 166, 195);
+  background-color: #EEF4ED;
   border-radius: 1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: large;
@@ -21,4 +21,12 @@
   width: 10%;
   background: none;
   border: none;
+  
+}
+
+.search__button :hover{
+  background-color:  #0B2545;
+  fill: #EEF4ED;
+  border-radius: .5rem;
+  transform: 0.3s;
 }
