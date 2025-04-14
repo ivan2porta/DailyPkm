@@ -6,12 +6,8 @@
           </svg>
     </button>
     <ul class="sugerencias-container">
-        <li *ngFor="let i of sugerenciasNombre; let idx = index">
-            <sugerencia
-                [id]="sugerenciasId[idx]"
-                [nombre]="sugerenciasNombre[idx]"
-                [img]="sugerenciasImg[idx]">
-            </sugerencia>
-        </li>
+        <li *ngFor="let poke of sugerencias">
+            <sugerencia [id]="poke.id" [nombre]="poke.nombre" [img]="poke.img"></sugerencia>
+          </li>
     </ul>
 </div>

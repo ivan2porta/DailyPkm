@@ -9,4 +9,9 @@ export class SugerenciaComponent {
   @Input() id: number = 0;
   @Input() nombre: string = "";
   @Input() img: string = "";
+
+  constructor(){
+    console.log("Creada sugerencia");
+  }
 }
+
