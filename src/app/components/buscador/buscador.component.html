@@ -6,11 +6,12 @@
           </svg>
     </button>
     <ul class="sugerencias-container">
-        <li><sugerencia></sugerencia></li>
-        <li><sugerencia></sugerencia></li>
-        <li><sugerencia></sugerencia></li>
-        <li><sugerencia></sugerencia></li>
-        <li><sugerencia></sugerencia></li>
-        <li><sugerencia></sugerencia></li>
+        <li *ngFor="let i of sugerenciasNombre; let idx = index">
+            <sugerencia
+                [id]="sugerenciasId[idx]"
+                [nombre]="sugerenciasNombre[idx]"
+                [img]="sugerenciasImg[idx]">
+            </sugerencia>
+        </li>
     </ul>
 </div>

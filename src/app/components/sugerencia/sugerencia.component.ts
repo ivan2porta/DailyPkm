@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sugerencia',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./sugerencia.component.css']
 })
 export class SugerenciaComponent {
-
+  @Input() id: number = 0;
+  @Input() nombre: string = "";
+  @Input() img: string = "";
 }
